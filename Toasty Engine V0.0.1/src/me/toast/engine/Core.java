@@ -12,7 +12,7 @@ public class Core {
             glfwPollEvents();
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            glClearColor(0, 0, 0, 1);
+            glClearColor(Color.VIOLET().red, Color.VIOLET().green, Color.VIOLET().blue, 1);
 
             Thread.sleep(1000/60);
             glfwSwapBuffers(window);

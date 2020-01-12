@@ -1,5 +1,9 @@
 package me.toast.engine;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.*;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
@@ -19,7 +23,7 @@ public class Mesh {
         this.vertices = vertices;
         this.uvs = uvs;
 
-        vao = GL30.glGenVertexArrays();
+         vao = GL30.glGenVertexArrays();
         GL30.glBindVertexArray(vao);
 
         v_id = glGenBuffers();
@@ -30,7 +34,7 @@ public class Mesh {
 
         u_id = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, u_id);
-        glBufferDate(GL_ARRAY_BUFFER, CreateBuffer(uvs), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, CreateBuffer(uvs), GL_STATIC_DRAW);
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
@@ -39,6 +43,20 @@ public class Mesh {
         GL30.glBindVertexArray(vao);
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+
+        glBindBuffer(GL_ARRAY_BUFFER, v_id);
+        glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
+
+        glBindBuffer(GL_ARRAY_BUFFER, u_id);
+        glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
+
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+        GL30.glBindVertexArray(0);
     }
 
     public FloatBuffer CreateBuffer(float[] data) {
