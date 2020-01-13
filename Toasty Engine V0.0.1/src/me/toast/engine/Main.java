@@ -71,6 +71,8 @@ public class Main {
         glfwMakeContextCurrent(window);
         // Enable v-sync //Setting FPS?
         glfwSwapInterval(1);
+        //Setting Window Image
+        WindowImage.setIcon("./res/Textures/icon.png");
         // Make the window visible
         glfwShowWindow(window);
     }
