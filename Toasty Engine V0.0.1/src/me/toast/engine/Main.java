@@ -38,7 +38,7 @@ public class Main {
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-        window = glfwCreateWindow(1280, 720, "Toasty Engine Test 2 V0.0.1", NULL, NULL);
+        window = glfwCreateWindow(1280, 720, "Toasty Engine Test 4 V0.0.1", NULL, NULL);
         if ( window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
@@ -70,9 +70,9 @@ public class Main {
         // Make the OpenGL context current
         glfwMakeContextCurrent(window);
         // Enable v-sync //Setting FPS?
-        glfwSwapInterval(1);
-        //Setting Window Image
-        WindowImage.setIcon("./res/Textures/icon.png");
+        glfwSwapInterval(1000/75);
+        //Setting Window Icon
+        try { WindowImage.setIcon("./res/Textures/icon.png", window); } catch (Exception e) { e.printStackTrace(); }
         // Make the window visible
         glfwShowWindow(window);
     }
@@ -88,11 +88,11 @@ public class Main {
 
         TexturedRectangle tex = new TexturedRectangle("res/Textures/wood.png", 10, 10, 100, 100);
         Rectangle rect = new Rectangle(255, 0, 0, 10, 10, 100, 100);
-        Line line = new Line(255, 0, 0, 500, 500, 600, 600);
+        Line line = new Line(0, 255, 0, 500, 500, 600, 600);
 
         while(!glfwWindowShouldClose(window)) {
 
-            glClearColor(0, 0, 0, 1);
+            glClearColor(0, 0, 0, 0);
 
             glClear(GL_COLOR_BUFFER_BIT);
             /* The glClear below is only for 3D Games */
