@@ -1,15 +1,18 @@
-package me.toast.engine;
+package me.toast.engine.shapes;
+
+import me.toast.engine.ObjectBase;
+
+import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class Rectangle extends ObjectBase {
 
-    private int r, g, b, x, y, width, height;
+    private int x, y, width, height;
+    private Color color;
 
-    public Rectangle(int r, int g, int b, int x, int y, int width, int height) {
-        this.r = r;
-        this.g = g;
-        this.b = b;
+    public Rectangle(Color color, int x, int y, int width, int height) {
+        this.color = color;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -23,23 +26,19 @@ public class Rectangle extends ObjectBase {
 
     @Override
     public void render() {
-        glColor3f(r, g, b);
+        glColor3f(color.getRed(), color.getGreen(), color.getBlue());
 
         glBegin(GL_QUADS);
-            glVertex2i(x, y); //Upper-Left
-            glVertex2i(width, y); //Upper-Right
-            glVertex2i(width, height); //Bottom-Right
-            glVertex2i(x, height); //Bottom-Left
+            glVertex2f(x, y); //Upper-Left
+            glVertex2f(width, y); //Upper-Right
+            glVertex2f(width, height); //Bottom-Right
+            glVertex2f(x, height); //Bottom-Left
         glEnd();
         super.render();
     }
 
-    public int getR() { return r; }
-    public void setR(int r) { this.r = r; }
-    public int getG() { return g; }
-    public void setG(int g) { this.g = g; }
-    public int getB() { return b; }
-    public void setB(int b) { this.b = b; }
+    public Color getColor() { return color; }
+    public void setColor(Color color) { this.color = color; }
 
     public int getX() { return x; }
     public void setX(int x) { this.x = x; }
